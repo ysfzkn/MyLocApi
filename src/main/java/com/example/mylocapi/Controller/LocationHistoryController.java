@@ -33,13 +33,4 @@ public class LocationHistoryController
         return new ResponseEntity<>(locationHistory, HttpStatus.CREATED);
     }
 
-    /*
-    // Authentication Layer ??
-    @GetMapping // location-history
-    public ResponseEntity<?> getAllHistoryOfUser(@AuthenticationPrincipal UserPrincipal userPrincipal)
-    {
-        return ResponseEntity.ok(LocationHistoryService.findLocationHistoryOfUser(userPrincipal.getId()));
-    }
-    */
-
 }

@@ -23,12 +23,12 @@ public class LocationHistory
     @Column(name = "picByte", length = 1000)
     private byte[] picByte; // picture data
     @ManyToOne(fetch = FetchType.LAZY,
-                cascade = { CascadeType.ALL })
+                cascade = CascadeType.ALL )
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY,
-            cascade = { CascadeType.ALL })
-    @JoinColumn(name="location_id", nullable=false)
+            cascade = CascadeType.ALL )
+    @JoinColumn(name="location_id")
     private Location location;
 }

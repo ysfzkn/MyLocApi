@@ -1,6 +1,7 @@
 package com.example.mylocapi.Model;
 
 import com.example.mylocapi.Repository.Projection.LocationHistoryItem;
+import com.sun.istack.NotNull;
 import lombok.Data;
 import org.springframework.data.geo.Point;
 
@@ -15,12 +16,11 @@ public class Location
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", nullable = false)
+    @Column( name = "name", nullable = false)
     private String name;
 
     @Column( name = "geom", nullable = false)
-    private Point geom;
-
-
+    @NotNull
+    private Point geom; // not null exception??
 
 }

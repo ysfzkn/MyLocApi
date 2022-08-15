@@ -3,12 +3,14 @@ package com.example.mylocapi.Security;
 import com.example.mylocapi.Model.User;
 import com.example.mylocapi.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService
@@ -24,11 +26,13 @@ public class CustomUserDetailsService implements UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
-        User existingUser = userRepository.findByUsername(username).orElseThrow(() ->
-                new UsernameNotFoundException("User not found"));
+        Optional<User> user = userRepository.findByUsername(username);
+        return JwtUsersDetails.create(user.get());
+    }
 
-        return new org.springframework.security.core.userdetails.User(
-                existingUser.getEmail(), existingUser.getPassword(), new ArrayList<>());
-
+    public UserDetails loadUserById(Long id)
+    {
+        Optional<User> user = userRepository.findById(id);
+        return JwtUsersDetails.create(user.get());
     }
 }

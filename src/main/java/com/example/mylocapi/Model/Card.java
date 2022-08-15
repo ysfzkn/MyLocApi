@@ -1,7 +1,10 @@
 package com.example.mylocapi.Model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "cards")
 public class Card
