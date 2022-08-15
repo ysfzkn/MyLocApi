@@ -18,7 +18,7 @@ public class User
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username",unique = true, nullable = false)
     private String username;
 
     @Column(name = "password", nullable = false)
@@ -32,4 +32,8 @@ public class User
                 mappedBy = "user")
     private Set<LocationHistory> locationHistory;
 
+    // A user can only have one card
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_id", referencedColumnName = "id")
+    private Card card;
 }

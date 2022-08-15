@@ -20,8 +20,8 @@ public class LocationHistory
     @Column( name = "visit_time", nullable = false)
     private LocalDateTime visitTime;
 
-    // foto
-
+    @Column(name = "picByte", length = 1000)
+    private byte[] picByte; // picture data
     @ManyToOne(fetch = FetchType.LAZY,
                 cascade = { CascadeType.ALL })
     @JoinColumn(name="user_id", nullable=false)
