@@ -49,6 +49,7 @@ public class AuthController
         this.refreshTokenService = refreshTokenService;
     }
 
+    // Refactoring needed
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody UserRequest loginRequest)
     {

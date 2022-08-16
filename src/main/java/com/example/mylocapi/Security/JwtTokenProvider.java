@@ -13,7 +13,7 @@ public class JwtTokenProvider
     @Value("locapp")
     private String APP_SECRET;
 
-    @Value("120000")
+    @Value("86400000") // 1 day
     private long EXPIRES_IN;
 
     public String generateJwtToken(Authentication authentication)

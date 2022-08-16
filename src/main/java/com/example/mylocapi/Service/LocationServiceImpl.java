@@ -23,7 +23,7 @@ public class LocationServiceImpl implements LocationService
     public Location saveLocation(Location location)
     {
         System.out.println(location.getName());
-        System.out.println(location.getGeom());
+        System.out.println(location.getLongtitude());
         return locationRepository.save(location);
     }
 }

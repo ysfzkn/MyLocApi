@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Point;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
@@ -32,10 +29,13 @@ public class LocationController
     }
 
     @PostMapping
-    public ResponseEntity<?> saveLocation(Location location)
+    public ResponseEntity<?> saveLocation(@RequestBody Location location)
     {
+        /*
         Point geom = new Point(41.008583,28.980175);
         location.setGeom(geom);
+
+         */
         return new ResponseEntity<>(locationRepository.save(location), HttpStatus.CREATED);
     }
 }
