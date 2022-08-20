@@ -19,11 +19,26 @@ public class LocationServiceImpl implements LocationService
         return locationRepository.findAll();
     }
 
+
+    @Override
+    public Location getLocationById(Long id)
+    {
+        return locationRepository.findById(id).get();
+    }
     @Override
     public Location saveLocation(Location location)
     {
-        System.out.println(location.getName());
-        System.out.println(location.getLongtitude());
         return locationRepository.save(location);
     }
+
+    @Override
+    public Location deleteLocationById(Long id)
+    {
+        Location location = locationRepository.findById(id).get();
+        locationRepository.deleteById(id);
+
+        return location;
+    }
+
+
 }
