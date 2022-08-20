@@ -7,8 +7,13 @@ import java.time.LocalDateTime;
 public interface LocationHistoryItem
 {
     String getName();
-
-    Point getGeom(); // Location Data (longtitude, latitude)
-
     LocalDateTime getVisitTime();
+
+    Double getLatitude(); // Location Data (longtitude, latitude)
+
+    Double getLongtitude();
+
+    byte[] getPicByte();
+
+
 }

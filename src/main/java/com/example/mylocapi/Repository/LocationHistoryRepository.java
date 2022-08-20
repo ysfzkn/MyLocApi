@@ -12,7 +12,9 @@ import java.util.List;
 @Repository
 public interface LocationHistoryRepository extends JpaRepository<LocationHistory, Long>
 {
-    @Query("select l.name as name, l.longtitude as longtitude,l.latitude as latitude, lh.visitTime as visitTime " +
+    @Query("select lh.id as id, l.name as name, lh.visitTime as visitTime,l.latitude as latitude, " +
+            "l.longtitude as longtitude, " +
+            "lh.picByte as picByte " +
             "from LocationHistory lh left join Location l on l.id = lh.location.id " +
             "where lh.user.id = :userId")
     List<LocationHistoryItem> findAllLocationHistoryOfUser(@Param("userId") Long userId);
