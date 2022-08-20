@@ -24,13 +24,11 @@ public class User
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL,
-                mappedBy = "user")
-    private Set<LocationHistory> locationHistory;
+    @Column(name = "card_balance", nullable = false, updatable = true)
+    private long cardBalance = 500;  // Default Initilazititon Value 50.00
 
-    // A user can only have one card
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "card_id", referencedColumnName = "id")
-    private Card card;
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "user")
+    private Set<LocationHistory> locationHistory;
 }

@@ -1,4 +1,4 @@
-package com.example.mylocapi.request;
+package com.example.mylocapi.Request;
 
 import lombok.Data;
 

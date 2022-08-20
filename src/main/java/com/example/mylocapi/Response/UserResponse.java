@@ -1,4 +1,4 @@
-package com.example.mylocapi.response;
+package com.example.mylocapi.Response;
 
 
 import com.example.mylocapi.Model.User;
@@ -9,11 +9,4 @@ public class UserResponse
 {
     Long id;
     String userName;
-
-    public UserResponse(User user)
-    {
-        this.id = user.getId();
-
-        this.userName = user.getUsername();
-    }
 }
