@@ -3,8 +3,8 @@ package com.example.mylocapi.Controller;
 
 import com.example.mylocapi.Model.User;
 import com.example.mylocapi.Security.JwtTokenProvider;
-import com.example.mylocapi.request.UserRequest;
-import com.example.mylocapi.response.AuthResponse;
+import com.example.mylocapi.Request.UserRequest;
+import com.example.mylocapi.Response.AuthResponse;
 import com.example.mylocapi.Service.RefreshTokenService;
 import com.example.mylocapi.Service.UserService;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("auth")
 public class AuthController
 {
 
@@ -53,21 +53,32 @@ public class AuthController
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody UserRequest loginRequest)
     {
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                loginRequest.getUsername(),
-                loginRequest.getPassword());
-        Authentication auth = authenticationManager.authenticate(authToken);
-        SecurityContextHolder.getContext().setAuthentication(auth);
-
-        String jwtToken = jwtTokenProvider.generateJwtToken(auth);
-        Optional<User> user = userService.getOneUserByUserName(loginRequest.getUsername());
-
         AuthResponse authResponse = new AuthResponse();
-        authResponse.setAccessToken("Bearer " + jwtToken);
-        authResponse.setRefreshToken(refreshTokenService.createRefreshToken(user.get()));
-        authResponse.setUserId(user.get().getId());
 
-        return new ResponseEntity<>(authResponse, HttpStatus.ACCEPTED);
+        try
+        {
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                    loginRequest.getUsername(),
+                    loginRequest.getPassword());
+            Authentication auth = authenticationManager.authenticate(authToken);
+            SecurityContextHolder.getContext().setAuthentication(auth);
+
+            String jwtToken = jwtTokenProvider.generateJwtToken(auth);
+            Optional<User> user = userService.getOneUserByUserName(loginRequest.getUsername());
+
+            authResponse.setMessage("Login Successful !");
+            authResponse.setAccessToken("Bearer " + jwtToken);
+            authResponse.setRefreshToken(refreshTokenService.createRefreshToken(user.get()));
+            authResponse.setUserId(user.get().getId());
+
+            return new ResponseEntity<>(authResponse, HttpStatus.ACCEPTED);
+        }
+        catch (Exception e)
+        {
+            authResponse.setMessage(e.getMessage());
+            return new ResponseEntity<>(authResponse, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping("/register")
@@ -85,7 +96,7 @@ public class AuthController
         user.setUsername(registerRequest.getUsername());
         user.setName(registerRequest.getName());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        userService.saveOneUser(user);
+        User userRes = userService.saveOneUser(user);
 
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(registerRequest.getUsername(), registerRequest.getPassword());
         Authentication auth = authenticationManager.authenticate(authToken);
@@ -93,6 +104,9 @@ public class AuthController
         String jwtToken = jwtTokenProvider.generateJwtToken(auth);
 
         authResponse.setMessage("User successfully registered.");
+        authResponse.setAccessToken(jwtToken);
+        authResponse.setUserId(userRes.getId());
+
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
     }
 

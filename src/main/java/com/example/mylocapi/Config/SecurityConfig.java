@@ -91,7 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .exceptionHandling().authenticationEntryPoint(handler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/location")
+                .antMatchers(HttpMethod.POST, "/location")
                 .permitAll()
                 .antMatchers("/**")
                 .permitAll()
