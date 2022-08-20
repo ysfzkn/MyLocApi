@@ -24,4 +24,6 @@ public interface UserService
     void deleteById(Long userId);
 
     Optional<User> getOneUserByUserName(String userName);
+
+    void updateCardBalance(Long user_id, long price);
 }
