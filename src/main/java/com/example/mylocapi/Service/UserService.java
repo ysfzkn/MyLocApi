@@ -26,4 +26,6 @@ public interface UserService
     Optional<User> getOneUserByUserName(String userName);
 
     void updateCardBalance(Long user_id, long price);
+
+    void addToCard(Long user_id);
 }

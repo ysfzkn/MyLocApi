@@ -5,11 +5,13 @@ import com.example.mylocapi.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService
 {
     @Autowired
@@ -41,6 +43,7 @@ public class UserServiceImpl implements UserService
     @Override
     public User saveOneUser(User newUser)
     {
+        newUser.setCardBalance(500); // Default balance 500TL
         return userRepository.save(newUser);
     }
 
@@ -105,7 +108,24 @@ public class UserServiceImpl implements UserService
         {
             System.out.println("User "+user_id+" doesn't exist");
         }
+    }
 
+    @Override
+    public void addToCard(Long user_id)
+    {
+        try
+        {
+            long amount = 50;
+            User user = userRepository.findById(user_id).get();
+            long currentBalance = user.getCardBalance();
 
+            user.setCardBalance(currentBalance+amount);
+
+            System.out.println("User "+user_id+" new balance : "+user.getCardBalance());
+        }
+        catch(EmptyResultDataAccessException e)
+        {
+            System.out.println("User "+user_id+" doesn't exist");
+        }
     }
 }

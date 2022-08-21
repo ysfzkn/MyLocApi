@@ -76,13 +76,20 @@ Content-Type: application/json
 #### Delete Location by ID
 
 ```
-DELETE /location/1 HTTP/1.1
+DELETE /location/{location_id} HTTP/1.1
 Host: localhost:8080
 ```
 
 #### Get Location History Items Of User by userId
 
 ```
-GET /history/1 HTTP/1.1
+GET /history/{user_id} HTTP/1.1
+Host: localhost:8080
+```
+
+#### Add Money To Card (50)
+
+```
+GET /user/add-to-card/{user_id} HTTP/1.1
 Host: localhost:8080
 ```
