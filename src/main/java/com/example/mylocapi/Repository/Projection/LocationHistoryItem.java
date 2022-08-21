@@ -9,6 +9,8 @@ public interface LocationHistoryItem
     String getName();
     LocalDateTime getVisitTime();
 
+    String getComment();
+
     Double getLatitude(); // Location Data (longtitude, latitude)
 
     Double getLongtitude();

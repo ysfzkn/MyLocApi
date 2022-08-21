@@ -69,7 +69,8 @@ Host: localhost:8080
 Content-Type: application/json
 {
     "user_id" : 1,
-    "location_id" : 1
+    "location_id" : 1,
+    "comment": "Very nice place!"
 }
 ```
 

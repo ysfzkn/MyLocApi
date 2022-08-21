@@ -56,6 +56,7 @@ public class LocationHistoryImpl implements LocationHistoryService
 
         LocationHistory toSave = new LocationHistory();
 
+        toSave.setComment(newHistoryRequest.getComment());
         toSave.setPicByte(newHistoryRequest.getPicByte());
         toSave.setVisitTime(LocalDateTime.now());
         toSave.setUser(user);

@@ -23,6 +23,9 @@ public class LocationHistory
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime visitTime;
 
+    @Column( name = "comment", length = 1000)
+    private String comment;
+
     @Column(name = "picByte", length = 4000, nullable = false)
     @Lob
     private byte[] picByte; // picture data

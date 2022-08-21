@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public class LocationHistoryItemCreateRequest
 {
     LocalDateTime visitTime;
+    String comment;
     byte[] picByte;
     Long user_id;
     Long location_id;

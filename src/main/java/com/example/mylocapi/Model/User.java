@@ -25,7 +25,7 @@ public class User
     private String password;
 
     @Column(name = "card_balance", nullable = false, updatable = true)
-    private long cardBalance = 500;  // Default Initilazititon Value 50.00
+    private long cardBalance;
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,

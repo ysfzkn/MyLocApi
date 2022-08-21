@@ -18,9 +18,10 @@ public class LocationHistoryController
 {
     private final LocationHistoryService locationHistoryService;
 
-    private byte[] bytes;
+    private byte[] bytes = null;
 
-    public LocationHistoryController(LocationHistoryService locationHistoryService) {
+    public LocationHistoryController(LocationHistoryService locationHistoryService)
+    {
         this.locationHistoryService = locationHistoryService;
     }
 
@@ -74,13 +75,15 @@ public class LocationHistoryController
             locationHistoryResponse.setPicByte(this.bytes);
             locationHistoryResponse.setVisitTime(datetime);
             locationHistoryResponse.setId(locationHistoryRes.getId());
+            locationHistoryResponse.setComment(locationHistory.getComment());
 
             this.bytes = null;
             return new ResponseEntity<>(locationHistoryResponse, HttpStatus.CREATED);
         }
         catch (Exception e)
         {
-            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Please add photo before save history!  \n\nError : " + e.getMessage(),
+                                                HttpStatus.BAD_REQUEST);
         }
 
     }

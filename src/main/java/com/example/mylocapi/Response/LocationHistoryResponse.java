@@ -9,5 +9,6 @@ public class LocationHistoryResponse
 {
     Long id;
     LocalDateTime visitTime;
+    String comment;
     byte[] picByte;
 }
