@@ -1,7 +1,8 @@
 # MyLoc App Backend API
 
 ## Database Diagram
-![db_diagram](https://user-images.githubusercontent.com/58569590/185756193-f4f712df-9081-48dc-9f1a-1a0f2e6c4a47.png)
+
+![db_diagram drawio](https://user-images.githubusercontent.com/58569590/185811982-20f1c7df-b28f-45d2-b7af-9dcc80a96ddc.png)
 
 ### Endpoints
 
