@@ -1,0 +1,8 @@
+{
+  "name": "myloc_api",
+  "buildpacks": [
+    {
+      "url": "heroku/java"
+    }
+  ]
+}
