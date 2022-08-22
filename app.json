@@ -1,5 +1,5 @@
 {
-  "name": "myloc_api",
+  "name": "mylocapi",
   "buildpacks": [
     {
       "url": "heroku/java"
