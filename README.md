@@ -99,6 +99,6 @@ Host: localhost:8080
 #### Get Card Balance Of User by userId
 
 ```
-GET /card/{user_id} HTTP/1.1
+GET /user/card/{user_id} HTTP/1.1
 Host: localhost:8080
 ```
