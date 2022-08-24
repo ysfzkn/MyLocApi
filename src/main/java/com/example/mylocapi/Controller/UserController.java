@@ -34,4 +34,18 @@ public class UserController
         }
 
     }
+
+    @GetMapping("card/{user_id}")
+    public ResponseEntity<?> getCardBalance(@PathVariable Long user_id)
+    {
+        try
+        {
+            return new ResponseEntity<>(userService.getCardBalance(user_id), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e,HttpStatus.BAD_REQUEST);
+        }
+
+    }
 }

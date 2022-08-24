@@ -94,6 +94,23 @@ public class UserServiceImpl implements UserService
         return userRepository.findByUsername(userName);
     }
 
+
+    @Override
+    public Long getCardBalance(Long user_id)
+    {
+        try
+        {
+            User user = userRepository.findById(user_id).get();
+            long currentBalance = user.getCardBalance();
+            return currentBalance;
+        }
+        catch(EmptyResultDataAccessException e)
+        {
+            System.out.println("User "+user_id+" doesn't exist");
+            return null;
+        }
+    }
+
     @Override
     public void updateCardBalance(Long user_id, long price)
     {
