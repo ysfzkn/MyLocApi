@@ -95,3 +95,10 @@ Host: localhost:8080
 GET /user/add-to-card/{user_id} HTTP/1.1
 Host: localhost:8080
 ```
+
+#### Get Card Balance Of User by userId
+
+```
+GET /card/{user_id} HTTP/1.1
+Host: localhost:8080
+```
